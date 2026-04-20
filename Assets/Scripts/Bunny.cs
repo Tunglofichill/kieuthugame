@@ -21,7 +21,7 @@ public class Bunny : MonoBehaviour
     {
         State = BunnyState.Inactive;
         //find where we're shooting from
-        ArrowSpawnPosition = transform.FindChild("ArrowSpawnPosition");
+        ArrowSpawnPosition = transform.Find("ArrowSpawnPosition");
     }
 
     // Update is called once per frame

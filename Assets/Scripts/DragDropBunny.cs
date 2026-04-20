@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Linq;
 using Assets.Scripts;
@@ -118,6 +118,25 @@ public class DragDropBunny : MonoBehaviour
     {
         if (tempBackgroundBehindPath != null)
             tempBackgroundBehindPath.GetComponent<SpriteRenderer>().color = Constants.BlackColor;
+    }
+    // === HELPER CHO AUTOMATION TEST (thêm tạm, sau khi test xong có thể comment hoặc xóa) ===
+    public void SimulateValidTowerPlacement(Vector2 worldPosition)
+    {
+        if (GameManager.Instance.MoneyAvailable < Constants.BunnyCost)
+        {
+            Debug.LogError("[DragDropBunny] Test giả lập thất bại: Không đủ tiền mua tháp Thỏ!");
+            return;
+        }
+
+        Debug.Log($"[DragDropBunny] Tiến hành Instantiate tháp Thỏ tại {worldPosition}");
+        newBunny = Instantiate(BunnyPrefab, worldPosition, Quaternion.identity) as GameObject;
+        
+        Debug.Log($"[DragDropBunny] Đã trừ {Constants.BunnyCost} tiền thông qua AlterMoneyAvailable.");
+        GameManager.Instance.AlterMoneyAvailable(-Constants.BunnyCost);
+        
+        newBunny.GetComponent<Bunny>().Activate();
+        isDragging = false;
+        Debug.Log("[DragDropBunny] Hoàn tất mô phỏng thả tháp thành công.");
     }
 
 }

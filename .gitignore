@@ -51,3 +51,7 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
+Logs/
+UserSettings/
+.vs/

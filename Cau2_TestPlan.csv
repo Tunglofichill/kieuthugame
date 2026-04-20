@@ -1,0 +1,21 @@
+﻿Hạng Mục,Nội Dung Chi Tiết
+Mục tiêu,"Đảm bảo các tính năng cốt lõi của game đua xe (điều khiển xe, tăng tốc, va chạm vật lý, hệ thống điểm số) hoạt động chính xác, ổn định và mang lại trải nghiệm tốt cho người chơi."
+Phạm vi kiểm thử (In-scope),"- Core gameplay: Cơ chế bẻ lái trái/phải, phanh, ga.
+- Tính năng tăng tốc: Tốc độ tối đa, Nitro/Boost.
+- Va chạm vật lý: Va chạm giữa xe với đường đua, vật cản và xe khác.
+- Hệ thống điểm số: Cộng/trừ điểm chính xác theo chướng ngại vật/thời gian hành trình."
+Ngoài phạm vi (Out-of-scope),"- Hệ thống Multiplayer trực tuyến.
+- Các tính năng thanh toán/nạp tiền trong game.
+- Tối ưu hoá đồ hoạ nâng cao (chỉ test mức độ khung hình cơ bản)."
+Phương pháp (Manual),"- Kiểm thử giao diện và User Experience (UX).
+- Chơi thử trực tiếp trong Play Mode để test cảm nhận điều khiển xe và phản hồi va chạm.
+- Chạy các góc lag/góc kẹt để tìm lỗi xuyên vật thể."
+Phương pháp (Auto),"- Viết Unit Tests (EditMode) cho các hàm tính toán gia tốc và điểm số rạch ròi.
+- Viết PlayMode Tests cho logic Instantiate sinh ra xe và quãng đường xe chạy trong Unity Test Runner."
+Lịch trình,"- Giai đoạn 1 (Ngày 1): Phân tích thiết kế, viết Test Cases.
+- Giai đoạn 2 (Ngày 2-3): Thực thi kiểm thử tính năng (Manual + Auto) cho điều khiển và tốc độ.
+- Giai đoạn 3 (Ngày 4): Kiểm thử hệ thống va chạm vật lý và điểm số.
+- Giai đoạn 4 (Ngày 5): Regression Test (Test lại những bug đã sửa) và gửi Report hoàn thiện."
+Rủi ro tiềm ẩn,"1. Hệ thống tương tác vật lý (Physics Collision) của Unity có đặc thù không ổn định ở tốc độ cực cao (nguy cơ xe xuyên qua tường).
+2. Quá trình tính điểm có thể bị delay do hiệu suất máy.
+3. Trễ tiến độ do thiếu thiết bị máy test cấu hình thấp để kiểm tra độ giật lag thực tế."

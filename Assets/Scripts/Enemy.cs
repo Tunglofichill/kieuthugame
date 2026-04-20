@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using Assets.Scripts;
 using System;
@@ -79,5 +79,30 @@ public class Enemy : MonoBehaviour
         //notify interested parties that we died
         if (EnemyKilled != null)
             EnemyKilled(this, EventArgs.Empty);
+    }
+
+    // === HELPER CHO AUTOMATION TEST (thêm tạm, sau khi test xong có thể comment hoặc xóa) ===
+    public void SimulateReachLastWaypoint()
+    {
+        if (GameManager.Instance.Waypoints == null || GameManager.Instance.Waypoints.Length == 0)
+        {
+            Debug.LogError("[Enemy] SimulateReachLastWaypoint() thất bại. Chưa có Waypoints!");
+            return;
+        }
+
+        nextWaypointIndex = GameManager.Instance.Waypoints.Length - 1;
+        transform.position = GameManager.Instance.Waypoints[nextWaypointIndex].position;
+        Debug.Log($"[Enemy] Mô phỏng Quái Vật dịch chuyển đến Waypoint {nextWaypointIndex}");
+
+        // Trigger logic giống như trong Update()
+        if (Vector2.Distance(transform.position, GameManager.Instance.Waypoints[nextWaypointIndex].position) < 0.01f)
+        {
+            if (nextWaypointIndex == GameManager.Instance.Waypoints.Length - 1)
+            {
+                Debug.Log("[Enemy] Quái Vật lọt lưới! Đang gọi hàm xóa và trừ Lives...");
+                RemoveAndDestroy();
+                GameManager.Instance.Lives--;
+            }
+        }
     }
 }
